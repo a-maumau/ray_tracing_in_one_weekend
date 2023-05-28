@@ -6,7 +6,7 @@ I appreciate the awesome authors for making this material open to the public.
 
 # Note
 This program runs in parallel, but BVH or other data structures are not implemented. So it should be slow.
-The image size and sampling number are set a relative small number.
+The image size and sampling number are set a relatively small number.
 If you want to change it, edit the values in the `src/scene.nim`
 
 # Compile
@@ -20,5 +20,5 @@ make
 make run
 ```
 
-Rendered image will be saved in `outputs/rendered_img.ppm`
+Rendered image will be saved in `src/outputs/rendered_img.ppm`
 
