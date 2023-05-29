@@ -59,7 +59,6 @@ proc threadCompute(
 ) =
     var
         u, v: float64
-        #pixelColor: Color
         pixelColor = newColor(0, 0, 0)
 
     for h in countdown(height-1, 0):
@@ -89,14 +88,14 @@ proc compute*(this: var Renderer) =
     for h in countdown(height-1, 0):
         stdout.write("\rScanlines remaining: ", fmt"{h:>3}")
         flushFile(stdout)
-    
+
         for w in 0..<width:
             pixelColor.setToZero()
-    
+
             for i in 0..<this.samplesPerPixel:
                 u = (float64(w)+rand())/float64(width-1)
                 v = (float64(h)+rand())/float64(height-1)
-    
+
                 pixelColor += rayColor(this.world, this.camera.getRay(u, v), this.maxDepth)
 
             this.camera.film[h*width + w] = this.camera.film[h*width + w]+pixelColor
@@ -110,10 +109,7 @@ proc compute*(this: Renderer, threadNum: int) =
         width = this.camera.film.width
         height = this.camera.film.height
 
-        u, v: float64
-        pixelColor: Color
-
-        # ignoring 
+        # ignoring fraction
         samplePerThread = int(this.samplesPerPixel/threadNum)
         parallelColor: seq[seq[Color]] = @[]
 
